@@ -14,6 +14,9 @@
 		390862431B8BED0F001865BA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 390862421B8BED0F001865BA /* Info.plist */; };
 		3917DF401B6EE0F500542B67 /* BlockedSite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3917DF3F1B6EE0F500542B67 /* BlockedSite.m */; };
 		391B35071B85087D001C33A5 /* blockerList.json in Resources */ = {isa = PBXBuildFile; fileRef = 39572A121B3EF9AC00EF4DFC /* blockerList.json */; };
+		3945E3D91B8E4D6C005B3563 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945E3D81B8E4D6C005B3563 /* OrderedDictionary.m */; };
+		3945E3DA1B8E4D6C005B3563 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945E3D81B8E4D6C005B3563 /* OrderedDictionary.m */; };
+		3945E3DB1B8E4D6C005B3563 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945E3D81B8E4D6C005B3563 /* OrderedDictionary.m */; };
 		395729F71B3EF96A00EF4DFC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 395729F61B3EF96A00EF4DFC /* main.m */; };
 		395729FA1B3EF96A00EF4DFC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 395729F91B3EF96A00EF4DFC /* AppDelegate.m */; };
 		395729FD1B3EF96A00EF4DFC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395729FC1B3EF96A00EF4DFC /* ViewController.m */; };
@@ -69,6 +72,8 @@
 		3945E3D41B8BF54B005B3563 /* Website Blocker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Website Blocker.entitlements"; sourceTree = "<group>"; };
 		3945E3D51B8CFB7B005B3563 /* WebBlcoker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WebBlcoker.entitlements; sourceTree = "<group>"; };
 		3945E3D61B8CFB8E005B3563 /* URLCourier.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = URLCourier.entitlements; sourceTree = "<group>"; };
+		3945E3D71B8E4D6B005B3563 /* OrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedDictionary.h; sourceTree = "<group>"; };
+		3945E3D81B8E4D6C005B3563 /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedDictionary.m; sourceTree = "<group>"; };
 		395729F21B3EF96A00EF4DFC /* Website Blocker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Website Blocker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		395729F61B3EF96A00EF4DFC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		395729F81B3EF96A00EF4DFC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -154,6 +159,8 @@
 				395729FC1B3EF96A00EF4DFC /* ViewController.m */,
 				3917DF3E1B6EE0F500542B67 /* BlockedSite.h */,
 				3917DF3F1B6EE0F500542B67 /* BlockedSite.m */,
+				3945E3D71B8E4D6B005B3563 /* OrderedDictionary.h */,
+				3945E3D81B8E4D6C005B3563 /* OrderedDictionary.m */,
 				395729FE1B3EF96A00EF4DFC /* Main.storyboard */,
 				39572A011B3EF96A00EF4DFC /* Assets.xcassets */,
 				39572A031B3EF96A00EF4DFC /* LaunchScreen.storyboard */,
@@ -336,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				390862351B8BE05F001865BA /* ActionViewController.m in Sources */,
+				3945E3DB1B8E4D6C005B3563 /* OrderedDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +355,7 @@
 				3917DF401B6EE0F500542B67 /* BlockedSite.m in Sources */,
 				395729FA1B3EF96A00EF4DFC /* AppDelegate.m in Sources */,
 				395729F71B3EF96A00EF4DFC /* main.m in Sources */,
+				3945E3D91B8E4D6C005B3563 /* OrderedDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39572A161B3EF9AC00EF4DFC /* ActionRequestHandler.m in Sources */,
+				3945E3DA1B8E4D6C005B3563 /* OrderedDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

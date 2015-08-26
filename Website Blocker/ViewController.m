@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "BlockedSite.h"
 #import <SafariServices/SafariServices.h>
+#import "OrderedDictionary.h"
 
 @interface ViewController ()
 {
@@ -48,7 +49,6 @@
     filePath = [documentsDirectory2 stringByAppendingPathComponent:@"blockList.json"];
     NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
     NSLog(@"DIT IS DE CONTENT: %@", content);
-    [ SFContentBlockerManager reloadContentBlockerWithIdentifier:@"net.noizystudios.Website-Blocker.WebBlcoker" completionHandler:nil];
 
     
 }
@@ -99,14 +99,18 @@
  
     NSDictionary *trigger = @{@"url-filter": newlyAddedSite };
     
-    NSDictionary *json = @{@"trigger" : trigger,
+    OrderedDictionary *jsonTest = [[OrderedDictionary alloc]init];
+    [jsonTest insertObject:action forKey:@"action" atIndex:0];
+    [jsonTest insertObject:trigger forKey:@"trigger" atIndex:1];
+    
+    
+    NSDictionary *json = @{
                            @"action": action,
-                           
-                        
+                           @"trigger" : trigger
                            };
     //http://stackoverflow.com/questions/11106584/appending-to-the-end-of-a-file-with-nsmutablestring
     
-    NSData *data = [NSJSONSerialization dataWithJSONObject:json
+    NSData *data = [NSJSONSerialization dataWithJSONObject:jsonTest
                                                    options:NSJSONWritingPrettyPrinted
                                                      error:nil];
     NSString *jsonStr = [[NSString alloc] initWithData:data
@@ -115,19 +119,46 @@
    NSLog(@"Dit is de json string: %@", jsonStr);
     
     
-    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
-    [fileHandle seekToEndOfFile];
-    [fileHandle writeData:[@"," dataUsingEncoding:NSUTF8StringEncoding]];
-    [fileHandle seekToEndOfFile];
-    [fileHandle writeData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
-    [fileHandle seekToEndOfFile];
-    [fileHandle writeData:[@"," dataUsingEncoding:NSUTF8StringEncoding]];
-    [fileHandle closeFile];
-    
+
     NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
+   
+
+    NSString *newString = [content substringToIndex:[content length]-1];
+    
+    NSMutableString *nieuweJSON = [[NSMutableString alloc]initWithString:newString];
+    [nieuweJSON appendString:@","];
+    [nieuweJSON appendString:jsonStr];
+    
+    
+    
+    
+//    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
+//    
+//    long long lastChar = [fileHandle seekToEndOfFile];
+//    lastChar--;
+//    lastChar--;
+//    
+//    //from where do you want to remove
+//    NSLog (@"Offset = %llu", lastChar);
+//    //Move to position
+//    [fileHandle seekToFileOffset: lastChar];
+//    
+//    //write an empty string
+//   [fileHandle writeData:[@" " dataUsingEncoding:NSUTF8StringEncoding]];
+//    
+//   [fileHandle closeFile];
+//    
+//    
+//    [fileHandle seekToEndOfFile];
+//    [fileHandle writeData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+//    [fileHandle seekToEndOfFile];
+//    [fileHandle writeData:[@"]" dataUsingEncoding:NSUTF8StringEncoding]];
+//    [fileHandle closeFile];
+    
     NSLog(@"DIT IS DE NIEUWE CONTENT: %@", content);
     
-    
+    [ SFContentBlockerManager reloadContentBlockerWithIdentifier:@"net.noizystudios.Website-Blocker.WebBlcoker" completionHandler:nil];
+
     
 }
 
