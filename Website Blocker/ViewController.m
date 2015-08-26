@@ -14,6 +14,7 @@
 {
     NSMutableArray *blockedSitesArray;
     NSString *newlyAddedSite;
+    NSString *filePath;
 }
 @end
 
@@ -24,9 +25,32 @@
     [super viewDidLoad];
     blockedSitesArray = [[NSMutableArray alloc]init];
     [self readJSONandRefreshTableviewArray];
-    [ SFContentBlockerManager reloadContentBlockerWithIdentifier:@"net.noizystudios.Website-Blocker.WebBlcoker" completionHandler:nil];
     
-   
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString *jsonPath = [documentsDirectory stringByAppendingPathComponent:@"blockList.json"];
+    
+    if ([fileManager fileExistsAtPath:jsonPath] == NO) {
+        // NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"txtFile" ofType:@"txt"];
+        NSString *resourcePath =  [[NSBundle mainBundle] pathForResource:@"blockerList" ofType:@"json"];
+        
+        [fileManager copyItemAtPath:resourcePath toPath:jsonPath error:&error];
+    }
+    
+    
+    
+
+    NSArray *paths2 = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory2 = [paths2 objectAtIndex:0];
+    filePath = [documentsDirectory2 stringByAppendingPathComponent:@"blockList.json"];
+    NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
+    NSLog(@"DIT IS DE CONTENT: %@", content);
+    [ SFContentBlockerManager reloadContentBlockerWithIdentifier:@"net.noizystudios.Website-Blocker.WebBlcoker" completionHandler:nil];
+
+    
 }
 
 - (void)readJSONandRefreshTableviewArray
@@ -56,7 +80,7 @@
         blockedURL.url = [kak valueForKey:@"url-filter"];
         [blockedSitesArray addObject:blockedURL];
         
-        NSLog(@"Dit is kak:%@", blockedURL.url);
+    //    NSLog(@"Dit is kak:%@", blockedURL.url);
     }
     
   
@@ -66,22 +90,21 @@
    // NSLog(@"Dit is de json: %@", jsonResults);
 }
 
-- (void)addURLToJson
+- (void)addURLToJson:(NSString *)newlyAddedSite
 {
    
-    newlyAddedSite = @"debolle.be";
     
     
     NSDictionary *action = @{@"type": @"block"};
  
     NSDictionary *trigger = @{@"url-filter": newlyAddedSite };
     
-    NSDictionary *json = @{
+    NSDictionary *json = @{@"trigger" : trigger,
                            @"action": action,
-                           @"trigger" : trigger,
+                           
                         
                            };
-    
+    //http://stackoverflow.com/questions/11106584/appending-to-the-end-of-a-file-with-nsmutablestring
     
     NSData *data = [NSJSONSerialization dataWithJSONObject:json
                                                    options:NSJSONWritingPrettyPrinted
@@ -90,6 +113,19 @@
                                               encoding:NSUTF8StringEncoding];
     
    NSLog(@"Dit is de json string: %@", jsonStr);
+    
+    
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
+    [fileHandle seekToEndOfFile];
+    [fileHandle writeData:[@"," dataUsingEncoding:NSUTF8StringEncoding]];
+    [fileHandle seekToEndOfFile];
+    [fileHandle writeData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    [fileHandle seekToEndOfFile];
+    [fileHandle writeData:[@"," dataUsingEncoding:NSUTF8StringEncoding]];
+    [fileHandle closeFile];
+    
+    NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
+    NSLog(@"DIT IS DE NIEUWE CONTENT: %@", content);
     
     
     
@@ -110,9 +146,14 @@
     
     Blockurl.url = [value valueForKey:@"URL"];
     NSLog(@"DE WAARDE VAN DE NIEUWE SITE 1 2 %@",  Blockurl.url);
+    [self addURLToJson:Blockurl.url];
     [self readJSONandRefreshTableviewArray];
-    [self addURLToJson];
     [blockedSitesArray addObject:Blockurl];
+    
+    
+    
+
+    
     [self.tableView reloadData];
 }
 

@@ -28,9 +28,9 @@
                                                      selector:@selector(addURLToJSON:)
                                                          name:@"urlAdded" object:nil];
     
+    
     //kopie maken van blockerlist
    
-  
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -38,15 +38,20 @@
     
     NSString *jsonPath = [documentsDirectory stringByAppendingPathComponent:@"blockList.json"];
     
-    if ([fileManager fileExistsAtPath:jsonPath] == NO) {
-       // NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"txtFile" ofType:@"txt"];
+    if ([fileManager fileExistsAtPath:jsonPath] == NO)
+    {
+        // NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"txtFile" ofType:@"txt"];
         NSString *resourcePath =  [[NSBundle mainBundle] pathForResource:@"blockerList" ofType:@"json"];
         
         [fileManager copyItemAtPath:resourcePath toPath:jsonPath error:&error];
     }
+
+    NSURL *jsonURL = [NSURL fileURLWithPath: jsonPath];
     
     
-    NSItemProvider *attachment = [[NSItemProvider alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"blockerList" withExtension:@"json"]];
+    //NSItemProvider *attachment = [[NSItemProvider alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"blockerList" withExtension:@"json"]];
+
+    NSItemProvider *attachment = [[NSItemProvider alloc] initWithContentsOfURL:jsonURL];
     
     NSExtensionItem *item = [[NSExtensionItem alloc] init];
     item.attachments = @[attachment];
