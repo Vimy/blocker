@@ -24,6 +24,10 @@
     // http://stackoverflow.com/questions/27348399/get-selected-text-in-safari-and-use-it-in-action-extension
     
    
+    //http://martinnormark.com/present-ios-8-share-extension-as-modal-view/
+    
+    
+    
      NSLog(@"Extension geladen");
     [super viewDidLoad];
     NSLog(@"Extension geladen");

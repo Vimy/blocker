@@ -104,10 +104,10 @@
     [jsonTest insertObject:trigger forKey:@"trigger" atIndex:1];
     
     
-    NSDictionary *json = @{
-                           @"action": action,
-                           @"trigger" : trigger
-                           };
+//    NSDictionary *json = @{
+//                           @"action": action,
+//                           @"trigger" : trigger
+//                           };
     //http://stackoverflow.com/questions/11106584/appending-to-the-end-of-a-file-with-nsmutablestring
     
     NSData *data = [NSJSONSerialization dataWithJSONObject:jsonTest
@@ -128,8 +128,9 @@
     NSMutableString *nieuweJSON = [[NSMutableString alloc]initWithString:newString];
     [nieuweJSON appendString:@","];
     [nieuweJSON appendString:jsonStr];
-    
-    
+    [nieuweJSON appendString:@"]"];
+    [nieuweJSON writeToFile:filePath atomically:YES
+encoding:NSUTF8StringEncoding error:nil];
     
     
 //    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
@@ -155,7 +156,7 @@
 //    [fileHandle writeData:[@"]" dataUsingEncoding:NSUTF8StringEncoding]];
 //    [fileHandle closeFile];
     
-    NSLog(@"DIT IS DE NIEUWE CONTENT: %@", content);
+    NSLog(@"DIT IS DE NIEUWE CONTENT: %@", nieuweJSON);
     
     [ SFContentBlockerManager reloadContentBlockerWithIdentifier:@"net.noizystudios.Website-Blocker.WebBlcoker" completionHandler:nil];
 
