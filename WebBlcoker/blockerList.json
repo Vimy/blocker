@@ -1,0 +1,23 @@
+[
+    {
+        "action": {
+            "type": "block"
+        },
+        "trigger": {
+            "url-filter": "https?://(www.)?google.*"
+        }
+    }
+ 
+ ,
+ 
+ 
+ {
+    "action": {
+        "type": "block"
+        },
+    "trigger": {
+        "url-filter": "https?://(www.)?octaafdebolle.be"
+    }
+ }
+ 
+]
