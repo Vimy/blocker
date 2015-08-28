@@ -66,23 +66,34 @@
     
     BlockedSite *blockedURL = [[BlockedSite alloc]init];
  
+    
+    
     if (!(blockedSitesArray == nil || [blockedSitesArray count] == 0))
     {
         [blockedSitesArray removeAllObjects];
     }
     
-    
+  
     NSDictionary *boempatat = [jsonResults valueForKey:@"trigger"];
     //  NSDictionary *pff = [jsonResults]
+    
+    
+    
     for (NSDictionary* kak in boempatat)
     {
         // NSDictionary *patatje = [jsonResults valueForKey:@"trigger"];
         blockedURL.url = [kak valueForKey:@"url-filter"];
+        NSLog(@"Dit is de url die uit de json komt:%@", blockedURL.url  );
         [blockedSitesArray addObject:blockedURL];
         
-    //    NSLog(@"Dit is kak:%@", blockedURL.url);
+     NSLog(@"Dit is de array:%@",blockedSitesArray);
     }
     
+    for(BlockedSite *blockie in blockedSitesArray)
+    {
+        NSString *string = blockie.url;
+        NSLog(@"Dit is het blockje: %@", string);
+    }
   
 
     
