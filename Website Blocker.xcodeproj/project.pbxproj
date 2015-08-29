@@ -26,6 +26,9 @@
 		39572A131B3EF9AC00EF4DFC /* blockerList.json in Resources */ = {isa = PBXBuildFile; fileRef = 39572A121B3EF9AC00EF4DFC /* blockerList.json */; };
 		39572A161B3EF9AC00EF4DFC /* ActionRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 39572A151B3EF9AC00EF4DFC /* ActionRequestHandler.m */; };
 		39572A1A1B3EF9AC00EF4DFC /* WebBlcoker.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 39572A101B3EF9AC00EF4DFC /* WebBlcoker.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3973929F1B9262CC006779DF /* ActionRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3973929E1B9262CC006779DF /* ActionRequestHandler.m */; };
+		397392A11B9262CC006779DF /* Action.js in Resources */ = {isa = PBXBuildFile; fileRef = 397392A01B9262CC006779DF /* Action.js */; };
+		397392A51B9262CC006779DF /* URLCollector.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3973929B1B9262CC006779DF /* URLCollector.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,13 @@
 			remoteGlobalIDString = 39572A0F1B3EF9AC00EF4DFC;
 			remoteInfo = WebBlcoker;
 		};
+		397392A31B9262CC006779DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 395729EA1B3EF96900EF4DFC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3973929A1B9262CC006779DF;
+			remoteInfo = URLCollector;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +63,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				3908623C1B8BE05F001865BA /* URLCourier.appex in Embed App Extensions */,
+				397392A51B9262CC006779DF /* URLCollector.appex in Embed App Extensions */,
 				39572A1A1B3EF9AC00EF4DFC /* WebBlcoker.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -89,6 +100,11 @@
 		39572A141B3EF9AC00EF4DFC /* ActionRequestHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionRequestHandler.h; sourceTree = "<group>"; };
 		39572A151B3EF9AC00EF4DFC /* ActionRequestHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionRequestHandler.m; sourceTree = "<group>"; };
 		39572A171B3EF9AC00EF4DFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3973929B1B9262CC006779DF /* URLCollector.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = URLCollector.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3973929D1B9262CC006779DF /* ActionRequestHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionRequestHandler.h; sourceTree = "<group>"; };
+		3973929E1B9262CC006779DF /* ActionRequestHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionRequestHandler.m; sourceTree = "<group>"; };
+		397392A01B9262CC006779DF /* Action.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Action.js; sourceTree = "<group>"; };
+		397392A21B9262CC006779DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +123,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		39572A0D1B3EF9AC00EF4DFC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		397392981B9262CC006779DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,6 +158,7 @@
 				395729F41B3EF96A00EF4DFC /* Website Blocker */,
 				39572A111B3EF9AC00EF4DFC /* WebBlcoker */,
 				390862321B8BE05F001865BA /* URLCourier */,
+				3973929C1B9262CC006779DF /* URLCollector */,
 				395729F31B3EF96A00EF4DFC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -145,6 +169,7 @@
 				395729F21B3EF96A00EF4DFC /* Website Blocker.app */,
 				39572A101B3EF9AC00EF4DFC /* WebBlcoker.appex */,
 				390862311B8BE05F001865BA /* URLCourier.appex */,
+				3973929B1B9262CC006779DF /* URLCollector.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -190,6 +215,17 @@
 			path = WebBlcoker;
 			sourceTree = "<group>";
 		};
+		3973929C1B9262CC006779DF /* URLCollector */ = {
+			isa = PBXGroup;
+			children = (
+				3973929D1B9262CC006779DF /* ActionRequestHandler.h */,
+				3973929E1B9262CC006779DF /* ActionRequestHandler.m */,
+				397392A01B9262CC006779DF /* Action.js */,
+				397392A21B9262CC006779DF /* Info.plist */,
+			);
+			path = URLCollector;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -224,6 +260,7 @@
 			dependencies = (
 				39572A191B3EF9AC00EF4DFC /* PBXTargetDependency */,
 				3908623B1B8BE05F001865BA /* PBXTargetDependency */,
+				397392A41B9262CC006779DF /* PBXTargetDependency */,
 			);
 			name = "Website Blocker";
 			productName = "Website Blocker";
@@ -245,6 +282,23 @@
 			name = WebBlcoker;
 			productName = WebBlcoker;
 			productReference = 39572A101B3EF9AC00EF4DFC /* WebBlcoker.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		3973929A1B9262CC006779DF /* URLCollector */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 397392A61B9262CC006779DF /* Build configuration list for PBXNativeTarget "URLCollector" */;
+			buildPhases = (
+				397392971B9262CC006779DF /* Sources */,
+				397392981B9262CC006779DF /* Frameworks */,
+				397392991B9262CC006779DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = URLCollector;
+			productName = URLCollector;
+			productReference = 3973929B1B9262CC006779DF /* URLCollector.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -283,6 +337,10 @@
 							};
 						};
 					};
+					3973929A1B9262CC006779DF = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 4TMN4G2PE7;
+					};
 				};
 			};
 			buildConfigurationList = 395729ED1B3EF96900EF4DFC /* Build configuration list for PBXProject "Website Blocker" */;
@@ -301,6 +359,7 @@
 				395729F11B3EF96900EF4DFC /* Website Blocker */,
 				39572A0F1B3EF9AC00EF4DFC /* WebBlcoker */,
 				390862301B8BE05F001865BA /* URLCourier */,
+				3973929A1B9262CC006779DF /* URLCollector */,
 			);
 		};
 /* End PBXProject section */
@@ -332,6 +391,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				39572A131B3EF9AC00EF4DFC /* blockerList.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		397392991B9262CC006779DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				397392A11B9262CC006779DF /* Action.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +435,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		397392971B9262CC006779DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3973929F1B9262CC006779DF /* ActionRequestHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -380,6 +455,11 @@
 			isa = PBXTargetDependency;
 			target = 39572A0F1B3EF9AC00EF4DFC /* WebBlcoker */;
 			targetProxy = 39572A181B3EF9AC00EF4DFC /* PBXContainerItemProxy */;
+		};
+		397392A41B9262CC006779DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3973929A1B9262CC006779DF /* URLCollector */;
+			targetProxy = 397392A31B9262CC006779DF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -587,6 +667,32 @@
 			};
 			name = Release;
 		};
+		397392A71B9262CC006779DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = URLCollector/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.noizystudios.Website-Blocker.URLCollector";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		397392A81B9262CC006779DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = URLCollector/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.noizystudios.Website-Blocker.URLCollector";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -625,6 +731,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		397392A61B9262CC006779DF /* Build configuration list for PBXNativeTarget "URLCollector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				397392A71B9262CC006779DF /* Debug */,
+				397392A81B9262CC006779DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

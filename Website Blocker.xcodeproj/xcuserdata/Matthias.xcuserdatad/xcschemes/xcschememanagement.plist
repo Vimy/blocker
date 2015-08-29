@@ -11,6 +11,11 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>URLCollector.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>URLCourier.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -45,6 +50,11 @@
 			<true/>
 		</dict>
 		<key>397392881B925BB7006779DF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3973929A1B9262CC006779DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

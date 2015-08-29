@@ -64,20 +64,41 @@
     }
             
                                    
-                                   
-}
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Succes!"
+                                  message:@"Website geblokkeerd"
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+      
+  
+    
+    
+                         }];
+    
+      [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
 
+                         }
+                         
+                         
+                         
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // Dispose of any resources that can be recreated. 
 }
 
 - (IBAction)done {
     // Return any edited content to the host app.
     // This template doesn't do anything, so we just echo the passed in items.
     
-    NSDictionary *resultsForJavaScriptFinalize = @{@"statusmessage":@"website toegevoegd"};
-    NSDictionary *resultsDictionary = @{ NSExtensionJavaScriptFinalizeArgumentKey: @[resultsForJavaScriptFinalize] };
+    NSDictionary *resultsDictionary = @{ NSExtensionJavaScriptFinalizeArgumentKey:@{@"statusmessage":@"website toegevoegd"} };
     
     NSItemProvider *resultsProvider = [[NSItemProvider alloc] initWithItem:resultsDictionary typeIdentifier:(NSString *)kUTTypePropertyList];
     
