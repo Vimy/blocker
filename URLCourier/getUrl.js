@@ -6,4 +6,14 @@ run: function(arguments) {
 }
 };
 
+finalize: function(arguments) {
+    var message = arguments["statusMessage"];
+    
+    if (message) {
+        alert(message);
+    }
+}
+
+};
+
 var ExtensionPreprocessingJS = new MyPreprocessor;

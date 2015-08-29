@@ -64,7 +64,6 @@
     NSDictionary *jsonResults = [NSJSONSerialization JSONObjectWithData:data
                                                                 options:kNilOptions error:&error];
     
-    BlockedSite *blockedURL = [[BlockedSite alloc]init];
  
     
     
@@ -81,21 +80,12 @@
     
     for (NSDictionary* kak in boempatat)
     {
-        // NSDictionary *patatje = [jsonResults valueForKey:@"trigger"];
-        blockedURL.url = [kak valueForKey:@"url-filter"];
-        NSLog(@"Dit is de url die uit de json komt:%@", blockedURL.url  );
-        [blockedSitesArray addObject:blockedURL];
-        
-     NSLog(@"Dit is de array:%@",blockedSitesArray);
-    }
-    
-    for(BlockedSite *blockie in blockedSitesArray)
-    {
-        NSString *string = blockie.url;
-        NSLog(@"Dit is het blockje: %@", string);
-    }
-  
+        BlockedSite *blockedURL = [[BlockedSite alloc]init];
 
+        blockedURL.url = [kak valueForKey:@"url-filter"];
+        [blockedSitesArray addObject:blockedURL];
+  
+    }
     
     
    // NSLog(@"Dit is de json: %@", jsonResults);

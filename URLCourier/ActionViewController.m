@@ -26,6 +26,7 @@
    
     //http://martinnormark.com/present-ios-8-share-extension-as-modal-view/
     
+    [self setModalPresentationStyle:UIModalPresentationOverCurrentContext]; //voor transparantie!
     
     
      NSLog(@"Extension geladen");
@@ -74,7 +75,16 @@
 - (IBAction)done {
     // Return any edited content to the host app.
     // This template doesn't do anything, so we just echo the passed in items.
-    [self.extensionContext completeRequestReturningItems:self.extensionContext.inputItems completionHandler:nil];
+    
+    NSDictionary *resultsForJavaScriptFinalize = @{@"statusmessage":@"website toegevoegd"};
+    NSDictionary *resultsDictionary = @{ NSExtensionJavaScriptFinalizeArgumentKey: @[resultsForJavaScriptFinalize] };
+    
+    NSItemProvider *resultsProvider = [[NSItemProvider alloc] initWithItem:resultsDictionary typeIdentifier:(NSString *)kUTTypePropertyList];
+    
+    NSExtensionItem *resultsItem = [[NSExtensionItem alloc] init];
+    resultsItem.attachments = @[resultsProvider];
+    
+    [self.extensionContext completeRequestReturningItems:@[resultsItem] completionHandler:nil];
 }
 
 @end
