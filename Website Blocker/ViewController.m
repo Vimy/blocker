@@ -56,7 +56,6 @@
 - (void)readJSONandRefreshTableviewArray
 {
     
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"blockerList" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:filePath];
     
     NSError *error = nil;
@@ -74,7 +73,6 @@
     
   
     NSDictionary *boempatat = [jsonResults valueForKey:@"trigger"];
-    //  NSDictionary *pff = [jsonResults]
     
     
     
@@ -87,9 +85,7 @@
   
     }
     
-    
-   // NSLog(@"Dit is de json: %@", jsonResults);
-}
+    }
 
 - (void)addURLToJson:(NSString *)newlyAddedSite
 {
@@ -103,12 +99,6 @@
     OrderedDictionary *jsonTest = [[OrderedDictionary alloc]init];
     [jsonTest insertObject:action forKey:@"action" atIndex:0];
     [jsonTest insertObject:trigger forKey:@"trigger" atIndex:1];
-    
-    
-//    NSDictionary *json = @{
-//                           @"action": action,
-//                           @"trigger" : trigger
-//                           };
     //http://stackoverflow.com/questions/11106584/appending-to-the-end-of-a-file-with-nsmutablestring
     
     NSData *data = [NSJSONSerialization dataWithJSONObject:jsonTest
@@ -124,7 +114,7 @@
     NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
    
 
-    NSString *newString = [content substringToIndex:[content length]-1];
+    NSString *newString = [content substringToIndex:[content length]-2];
     
     NSMutableString *nieuweJSON = [[NSMutableString alloc]initWithString:newString];
     [nieuweJSON appendString:@","];
@@ -133,29 +123,6 @@
     [nieuweJSON writeToFile:filePath atomically:YES
 encoding:NSUTF8StringEncoding error:nil];
     
-    
-//    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
-//    
-//    long long lastChar = [fileHandle seekToEndOfFile];
-//    lastChar--;
-//    lastChar--;
-//    
-//    //from where do you want to remove
-//    NSLog (@"Offset = %llu", lastChar);
-//    //Move to position
-//    [fileHandle seekToFileOffset: lastChar];
-//    
-//    //write an empty string
-//   [fileHandle writeData:[@" " dataUsingEncoding:NSUTF8StringEncoding]];
-//    
-//   [fileHandle closeFile];
-//    
-//    
-//    [fileHandle seekToEndOfFile];
-//    [fileHandle writeData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]];
-//    [fileHandle seekToEndOfFile];
-//    [fileHandle writeData:[@"]" dataUsingEncoding:NSUTF8StringEncoding]];
-//    [fileHandle closeFile];
     
     NSLog(@"DIT IS DE NIEUWE CONTENT: %@", nieuweJSON);
     
@@ -168,12 +135,11 @@ encoding:NSUTF8StringEncoding error:nil];
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 - (IBAction)RefreshButtonPressed:(UIBarButtonItem *)sender
 {
     NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.net.noizystudios.websiteblocker"];
-    id value = [shared valueForKey:@"json"];
+    id value = [shared valueForKey:@"URL"];
    
     BlockedSite *Blockurl = [[BlockedSite alloc]init];
     
@@ -205,7 +171,8 @@ encoding:NSUTF8StringEncoding error:nil];
     
     if (cell == nil)
     {
-        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+
     }
     
     BlockedSite *blockURL =  [blockedSitesArray objectAtIndex:indexPath.row];

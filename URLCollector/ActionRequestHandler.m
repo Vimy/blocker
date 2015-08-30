@@ -68,10 +68,10 @@
     // dictionary to send back with a desired new background color style.
     if ([javaScriptPreprocessingResults[@"URL"] length] == 0)
     {
-       
-        
+        NSString *string = javaScriptPreprocessingResults[@"URL"];
+        NSLog(@"Dit is de url json extensie: %@", string );
         NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.net.noizystudios.websiteblocker"];
-        [shared setObject:javaScriptPreprocessingResults forKey:@"json"];
+        [shared setObject:javaScriptPreprocessingResults forKey:@"URL"];
         [shared synchronize];
         
         //http://stackoverflow.com/questions/24118918/sharing-data-between-an-ios-8-share-extension-and-main-app
