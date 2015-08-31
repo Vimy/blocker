@@ -14,8 +14,9 @@
 @interface ViewController ()
 {
     NSMutableArray *blockedSitesArray;
-    NSString *newlyAddedSite;
+    //NSString *newlyAddedSite;
     NSString *filePath;
+    NSMutableDictionary *jsonResults;
 }
 @end
 
@@ -24,29 +25,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+   
     blockedSitesArray = [[NSMutableArray alloc]init];
-    [self readJSONandRefreshTableviewArray];
+ 
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    NSString *jsonPath = [documentsDirectory stringByAppendingPathComponent:@"blockList.json"];
+    filePath= [documentsDirectory stringByAppendingPathComponent:@"blockList.json"];
     
-    if ([fileManager fileExistsAtPath:jsonPath] == NO) {
+    if ([fileManager fileExistsAtPath:filePath] == NO) {
         // NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"txtFile" ofType:@"txt"];
         NSString *resourcePath =  [[NSBundle mainBundle] pathForResource:@"blockerList" ofType:@"json"];
         
-        [fileManager copyItemAtPath:resourcePath toPath:jsonPath error:&error];
+        [fileManager copyItemAtPath:resourcePath toPath:filePath error:&error];
     }
     
-    
+   [self readJSONandRefreshTableviewArray];
     
 
-    NSArray *paths2 = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory2 = [paths2 objectAtIndex:0];
-    filePath = [documentsDirectory2 stringByAppendingPathComponent:@"blockList.json"];
     NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
     NSLog(@"DIT IS DE CONTENT: %@", content);
 
@@ -60,7 +59,7 @@
     
     NSError *error = nil;
     
-    NSDictionary *jsonResults = [NSJSONSerialization JSONObjectWithData:data
+    jsonResults = [NSJSONSerialization JSONObjectWithData:data
                                                                 options:kNilOptions error:&error];
     
  
@@ -72,15 +71,15 @@
     }
     
   
-    NSDictionary *boempatat = [jsonResults valueForKey:@"trigger"];
+    NSDictionary *triggerDic = [jsonResults valueForKey:@"trigger"];
     
     
     
-    for (NSDictionary* kak in boempatat)
+    for (NSDictionary* dic in triggerDic)
     {
         BlockedSite *blockedURL = [[BlockedSite alloc]init];
 
-        blockedURL.url = [kak valueForKey:@"url-filter"];
+        blockedURL.url = [dic valueForKey:@"url-filter"];
         [blockedSitesArray addObject:blockedURL];
   
     }
@@ -89,19 +88,37 @@
 
 - (void)addURLToJson:(NSString *)newlyAddedSite
 {
-   
+    OrderedDictionary *newJSON = [[OrderedDictionary alloc]init];
+    int i;
+    int x = 1;
+    
+    
+    for (i=0; i< [blockedSitesArray count];i++)
+    {
+        if([blockedSitesArray objectAtIndex:i])
+        {
+        BlockedSite *blockedURL = [blockedSitesArray objectAtIndex:i];
+        NSDictionary *action = @{@"type": @"block"};
+        NSDictionary *trigger = @{@"url-filter": blockedURL.url };
+        [newJSON insertObject:action forKey:@"action" atIndex:0];
+        [newJSON insertObject:trigger forKey:@"trigger" atIndex:1];
+            x++;
+        }
+    }
+    i++;
+    x++;
+    
     
     
     NSDictionary *action = @{@"type": @"block"};
  
     NSDictionary *trigger = @{@"url-filter": newlyAddedSite };
     
-    OrderedDictionary *jsonTest = [[OrderedDictionary alloc]init];
-    [jsonTest insertObject:action forKey:@"action" atIndex:0];
-    [jsonTest insertObject:trigger forKey:@"trigger" atIndex:1];
+    [newJSON insertObject:action forKey:@"action" atIndex:0];
+    [newJSON insertObject:trigger forKey:@"trigger" atIndex:1];
     //http://stackoverflow.com/questions/11106584/appending-to-the-end-of-a-file-with-nsmutablestring
     
-    NSData *data = [NSJSONSerialization dataWithJSONObject:jsonTest
+    NSData *data = [NSJSONSerialization dataWithJSONObject:newJSON
                                                    options:NSJSONWritingPrettyPrinted
                                                      error:nil];
     NSString *jsonStr = [[NSString alloc] initWithData:data
@@ -140,15 +157,23 @@ encoding:NSUTF8StringEncoding error:nil];
 {
     NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.net.noizystudios.websiteblocker"];
     id value = [shared valueForKey:@"URL"];
-   
-    BlockedSite *Blockurl = [[BlockedSite alloc]init];
-    
+   BlockedSite *Blockurl = [[BlockedSite alloc]init];
     Blockurl.url = [value valueForKey:@"URL"];
     NSLog(@"DE WAARDE VAN DE NIEUWE SITE 1 2 %@",  Blockurl.url);
-    [self addURLToJson:Blockurl.url];
-    [self readJSONandRefreshTableviewArray];
-    [blockedSitesArray addObject:Blockurl];
     
+    if (value)
+    {
+        Blockurl.url = [value valueForKey:@"URL"];
+        NSLog(@"DE WAARDE VAN DE NIEUWE SITE 1 2 %@",  Blockurl.url);
+        [self addURLToJson:Blockurl.url];
+        [self readJSONandRefreshTableviewArray];
+        [blockedSitesArray addObject:Blockurl];
+        
+    }
+    else
+    {
+        NSLog(@"Geen site ontvangen!");
+    }
     
     
 

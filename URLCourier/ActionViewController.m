@@ -26,7 +26,7 @@
    
     //http://martinnormark.com/present-ios-8-share-extension-as-modal-view/
     
-    [self setModalPresentationStyle:UIModalPresentationOverCurrentContext]; //voor transparantie!
+  //  [self setModalPresentationStyle:UIModalPresentationOverCurrentContext]; //voor transparantie!
     
     
      NSLog(@"Extension geladen");
