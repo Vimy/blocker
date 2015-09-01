@@ -67,8 +67,12 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "1"
+         BundleIdentifier = "net.noizystudios.Website-Blocker"
+         RemotePath = "/Users/Matthias/Library/Developer/CoreSimulator/Devices/C8DA9D3E-EC74-45D6-8F34-0352EA11A1E2/data/Containers/Bundle/Application/F4B4E277-7F60-4F4A-8413-7A5F5312050C/Website Blocker.app">
+      </RemoteRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "395729F11B3EF96900EF4DFC"
@@ -76,7 +80,7 @@
             BlueprintName = "Website Blocker"
             ReferencedContainer = "container:Website Blocker.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

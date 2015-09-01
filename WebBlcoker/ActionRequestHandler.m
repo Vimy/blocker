@@ -24,10 +24,6 @@
     //
     NSLog(@"Web extensions geladen");
     
-     [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(addURLToJSON:)
-                                                         name:@"urlAdded" object:nil];
-    
     
     //kopie maken van blockerlist
    
@@ -59,9 +55,5 @@
     [context completeRequestReturningItems:@[item] completionHandler:nil];
 }
 
-- (void)addURLToJSON:(NSNotification *)note
-{
-    NSLog(@"De notificationcenter werkt!");
-}
 
 @end

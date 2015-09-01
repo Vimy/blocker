@@ -83,42 +83,50 @@
         [blockedSitesArray addObject:blockedURL];
   
     }
+
+    [self.tableView reloadData];
     
-    }
+}
 
 - (void)addURLToJson:(NSString *)newlyAddedSite
 {
-    OrderedDictionary *newJSON = [[OrderedDictionary alloc]init];
-    int i;
-    int x = 1;
     
+    NSMutableDictionary *newDic = [[NSMutableDictionary alloc]init];
+    NSMutableArray *newArray = [[NSMutableArray alloc]init];
     
-    for (i=0; i< [blockedSitesArray count];i++)
+    for (int i=0; i< [blockedSitesArray count];i++)
     {
-        if([blockedSitesArray objectAtIndex:i])
-        {
+        OrderedDictionary *newJSON = [[OrderedDictionary alloc]init];
+
+       
+
         BlockedSite *blockedURL = [blockedSitesArray objectAtIndex:i];
         NSDictionary *action = @{@"type": @"block"};
         NSDictionary *trigger = @{@"url-filter": blockedURL.url };
         [newJSON insertObject:action forKey:@"action" atIndex:0];
         [newJSON insertObject:trigger forKey:@"trigger" atIndex:1];
-            x++;
-        }
+            [newDic addEntriesFromDictionary:newJSON];
+            [newArray addObject:newJSON];
+      
     }
-    i++;
-    x++;
-    
-    
+   
     
     NSDictionary *action = @{@"type": @"block"};
  
     NSDictionary *trigger = @{@"url-filter": newlyAddedSite };
+    NSLog(@"Print Array :%@", newArray);
     
-    [newJSON insertObject:action forKey:@"action" atIndex:0];
-    [newJSON insertObject:trigger forKey:@"trigger" atIndex:1];
+    OrderedDictionary *newJSON2 = [[OrderedDictionary alloc]init];
+
+    [newJSON2 insertObject:action forKey:@"action" atIndex:0];
+    [newJSON2 insertObject:trigger forKey:@"trigger" atIndex:1];
+    
+    
+    [newDic addEntriesFromDictionary:newJSON2];
+    [newArray addObject:newJSON2];
     //http://stackoverflow.com/questions/11106584/appending-to-the-end-of-a-file-with-nsmutablestring
     
-    NSData *data = [NSJSONSerialization dataWithJSONObject:newJSON
+    NSData *data = [NSJSONSerialization dataWithJSONObject:newArray
                                                    options:NSJSONWritingPrettyPrinted
                                                      error:nil];
     NSString *jsonStr = [[NSString alloc] initWithData:data
@@ -126,22 +134,42 @@
     
    NSLog(@"Dit is de json string: %@", jsonStr);
     
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    filePath= [documentsDirectory stringByAppendingPathComponent:@"blockList.json"];
+    
+    if ([fileManager fileExistsAtPath:filePath])
+    {
+        [fileManager removeItemAtPath:filePath error:&error];
+        [jsonStr writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    }
+    else
+    {
+        // NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"txtFile" ofType:@"txt"];
+        NSString *resourcePath =  [[NSBundle mainBundle] pathForResource:@"blockerList" ofType:@"json"];
+        
+        [fileManager copyItemAtPath:resourcePath toPath:filePath error:&error];
+    }
+
     
 
-    NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
+  //  NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
    
-
-    NSString *newString = [content substringToIndex:[content length]-2];
-    
-    NSMutableString *nieuweJSON = [[NSMutableString alloc]initWithString:newString];
-    [nieuweJSON appendString:@","];
-    [nieuweJSON appendString:jsonStr];
-    [nieuweJSON appendString:@"]"];
-    [nieuweJSON writeToFile:filePath atomically:YES
-encoding:NSUTF8StringEncoding error:nil];
-    
-    
-    NSLog(@"DIT IS DE NIEUWE CONTENT: %@", nieuweJSON);
+//
+//    NSString *newString = [content substringToIndex:[content length]-2];
+//    
+//    NSMutableString *nieuweJSON = [[NSMutableString alloc]initWithString:newString];
+//    [nieuweJSON appendString:@","];
+//    [nieuweJSON appendString:jsonStr];
+//    [nieuweJSON appendString:@"]"];
+//    [nieuweJSON writeToFile:filePath atomically:YES
+//encoding:NSUTF8StringEncoding error:nil];
+//    
+//    
+//    NSLog(@"DIT IS DE NIEUWE CONTENT: %@", nieuweJSON);
     
     [ SFContentBlockerManager reloadContentBlockerWithIdentifier:@"net.noizystudios.Website-Blocker.WebBlcoker" completionHandler:nil];
 
@@ -155,6 +183,8 @@ encoding:NSUTF8StringEncoding error:nil];
 }
 - (IBAction)RefreshButtonPressed:(UIBarButtonItem *)sender
 {
+    
+    
     NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.net.noizystudios.websiteblocker"];
     id value = [shared valueForKey:@"URL"];
    BlockedSite *Blockurl = [[BlockedSite alloc]init];
@@ -167,16 +197,12 @@ encoding:NSUTF8StringEncoding error:nil];
         NSLog(@"DE WAARDE VAN DE NIEUWE SITE 1 2 %@",  Blockurl.url);
         [self addURLToJson:Blockurl.url];
         [self readJSONandRefreshTableviewArray];
-        [blockedSitesArray addObject:Blockurl];
-        
+        //[blockedSitesArray addObject:Blockurl];
     }
     else
     {
         NSLog(@"Geen site ontvangen!");
     }
-    
-    
-
     
     [self.tableView reloadData];
 }

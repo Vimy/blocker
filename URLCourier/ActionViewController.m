@@ -49,52 +49,51 @@
                         NSLog(@"Url verkregen door de extensie:%@", jsPreprocessingResults);
                     
                     NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.net.noizystudios.websiteblocker"];
-                    NSString *url = [jsPreprocessingResults valueForKey:@"URL"];
-                    [shared setObject:jsPreprocessingResults forKey:@"json"];
+            //        NSString *url = [jsPreprocessingResults valueForKey:@"URL"];
+                    [shared setObject:jsPreprocessingResults forKey:@"URL"];
                     [shared synchronize];
                     
                      //http://stackoverflow.com/questions/24118918/sharing-data-between-an-ios-8-share-extension-and-main-app
                    }];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"urlAdded" object:nil];
 
                 
                 //http://nsnerd.co/action-extension-in-swift/
             }
         }
     }
-            
-                                   
-    UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Succes!"
-                                  message:@"Website geblokkeerd"
-                                  preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             [alert dismissViewControllerAnimated:YES completion:nil];
-                             
-      
-  
-    
-    
-                         }];
-    
-      [alert addAction:ok];
-    [self presentViewController:alert animated:YES completion:nil];
-
-                         }
+//    UIAlertController * alert=   [UIAlertController
+//                                  alertControllerWithTitle:@"Succes!"
+//                                  message:@"Website geblokkeerd"
+//                                  preferredStyle:UIAlertControllerStyleAlert];
+//    
+//    UIAlertAction* ok = [UIAlertAction
+//                         actionWithTitle:@"OK"
+//                         style:UIAlertActionStyleDefault
+//                         handler:^(UIAlertAction * action)
+//                         {
+//                             [alert dismissViewControllerAnimated:YES completion:nil];
+//                             
+//      
+//  
+//    
+//    
+//                         }];
+//    
+//      [alert addAction:ok];
+//    [self presentViewController:alert animated:YES completion:nil];
+}
                          
                          
                          
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated. 
 }
 
-- (IBAction)done {
+- (IBAction)done
+{
     // Return any edited content to the host app.
     // This template doesn't do anything, so we just echo the passed in items.
     
@@ -105,7 +104,8 @@
     NSExtensionItem *resultsItem = [[NSExtensionItem alloc] init];
     resultsItem.attachments = @[resultsProvider];
     
-    [self.extensionContext completeRequestReturningItems:@[resultsItem] completionHandler:nil];
+    [self.extensionContext completeRequestReturningItems:nil completionHandler:nil];
+     // [self.extensionContext completeRequestReturningItems:@[resultsItem] completionHandler:nil];
 }
 
 @end

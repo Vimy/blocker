@@ -1,11 +1,12 @@
-var MyPreprocessor = function() {};
 
-MyPreprocessor.prototype = {
+var GetURL = function() {};
+
+GetURL.prototype = {
+    
 run: function(arguments) {
-    arguments.completionFunction({"URL": document.URL});
-}
-};
-
+    arguments.completionFunction({ "URL" : document.URL });
+},
+    
 finalize: function(arguments) {
     var message = arguments["statusMessage"];
     
@@ -13,7 +14,7 @@ finalize: function(arguments) {
         alert(message);
     }
 }
-
+    
 };
 
-var ExtensionPreprocessingJS = new MyPreprocessor;
+var ExtensionPreprocessingJS = new GetURL;
