@@ -26,6 +26,10 @@
 {
     [super viewDidLoad];
    
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor blackColor]];
+    self.tableView.backgroundColor = [UIColor yellowColor];
+    
+    
     blockedSitesArray = [[NSMutableArray alloc]init];
  
     
