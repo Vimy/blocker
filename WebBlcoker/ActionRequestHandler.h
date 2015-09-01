@@ -9,5 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface ActionRequestHandler : NSObject <NSExtensionRequestHandling>
-- (void)addURLToJSON:(NSNotification *)note;
 @end

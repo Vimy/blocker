@@ -32,7 +32,7 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentsDirectory = paths[0];
     
     filePath= [documentsDirectory stringByAppendingPathComponent:@"blockList.json"];
     
@@ -65,7 +65,7 @@
  
     
     
-    if (!(blockedSitesArray == nil || [blockedSitesArray count] == 0))
+    if (!(blockedSitesArray == nil || blockedSitesArray.count == 0))
     {
         [blockedSitesArray removeAllObjects];
     }
@@ -94,13 +94,13 @@
     NSMutableDictionary *newDic = [[NSMutableDictionary alloc]init];
     NSMutableArray *newArray = [[NSMutableArray alloc]init];
     
-    for (int i=0; i< [blockedSitesArray count];i++)
+    for (int i=0; i< blockedSitesArray.count;i++)
     {
         OrderedDictionary *newJSON = [[OrderedDictionary alloc]init];
 
        
 
-        BlockedSite *blockedURL = [blockedSitesArray objectAtIndex:i];
+        BlockedSite *blockedURL = blockedSitesArray[i];
         NSDictionary *action = @{@"type": @"block"};
         NSDictionary *trigger = @{@"url-filter": blockedURL.url };
         [newJSON insertObject:action forKey:@"action" atIndex:0];
@@ -114,7 +114,6 @@
     NSDictionary *action = @{@"type": @"block"};
  
     NSDictionary *trigger = @{@"url-filter": newlyAddedSite };
-    NSLog(@"Print Array :%@", newArray);
     
     OrderedDictionary *newJSON2 = [[OrderedDictionary alloc]init];
 
@@ -137,7 +136,7 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentsDirectory = paths[0];
     
     filePath= [documentsDirectory stringByAppendingPathComponent:@"blockList.json"];
     
@@ -188,8 +187,7 @@
     NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.net.noizystudios.websiteblocker"];
     id value = [shared valueForKey:@"URL"];
    BlockedSite *Blockurl = [[BlockedSite alloc]init];
-    Blockurl.url = [value valueForKey:@"URL"];
-    NSLog(@"DE WAARDE VAN DE NIEUWE SITE 1 2 %@",  Blockurl.url);
+ 
     
     if (value)
     {
@@ -209,7 +207,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [blockedSitesArray count];
+    return blockedSitesArray.count;
 }
 
 
@@ -226,7 +224,7 @@
 
     }
     
-    BlockedSite *blockURL =  [blockedSitesArray objectAtIndex:indexPath.row];
+    BlockedSite *blockURL =  blockedSitesArray[indexPath.row];
     
     NSLog(@"Indexpath: %ld",(long)indexPath.row);
     cell.textLabel.text = blockURL.url;
