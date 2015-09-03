@@ -10,6 +10,7 @@
 #import "BlockedSite.h"
 #import <SafariServices/SafariServices.h>
 #import "OrderedDictionary.h"
+#import "AddSiteViewController.h"
 
 @interface ViewController ()
 {
@@ -90,6 +91,20 @@
 
     [self.tableView reloadData];
     
+}
+- (IBAction)tappedAddSiteButton:(UIButton *)sender
+{
+    NSLog(@"Gedaan!");
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+     //  AddSiteViewController *urlAddViewController = [storyboard instantiateViewControllerWithIdentifier:@"AddSiteViewController"];
+   
+    
+   AddSiteViewController *urlAddViewController = [[AddSiteViewController alloc] init];
+    urlAddViewController.view.backgroundColor = [UIColor clearColor];
+   urlAddViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    self.navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+
+    [self presentViewController:urlAddViewController animated:YES completion:nil];
 }
 
 - (void)addURLToJson:(NSString *)newlyAddedSite
