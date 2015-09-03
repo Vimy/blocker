@@ -12,12 +12,16 @@
 #import "OrderedDictionary.h"
 #import "AddSiteViewController.h"
 
+#define Rgb2UIColor(r, g, b)  [UIColor colorWithRed:((r) / 255.0) green:((g) / 255.0) blue:((b) / 255.0) alpha:1.0]
+
 @interface ViewController ()
 {
     NSMutableArray *blockedSitesArray;
     //NSString *newlyAddedSite;
     NSString *filePath;
     NSMutableDictionary *jsonResults;
+    IBOutlet UIBarButtonItem *addSiteButton;
+    IBOutlet UIBarButtonItem *RefreshButton;
 }
 @end
 
@@ -27,10 +31,11 @@
 {
     [super viewDidLoad];
    
-    [self.navigationController.navigationBar setBackgroundColor:[UIColor blackColor]];
-    self.tableView.backgroundColor = [UIColor blueColor];
-    
-    
+    self.navigationController.navigationBar.barTintColor = Rgb2UIColor(255, 84, 134);
+    self.tableView.backgroundColor = Rgb2UIColor(59, 210, 255);
+     self.navigationController.navigationBar.translucent = NO;
+    [RefreshButton setTintColor:Rgb2UIColor(204, 191, 27)];
+    [addSiteButton setTintColor:Rgb2UIColor(204, 191, 27)];
     blockedSitesArray = [[NSMutableArray alloc]init];
  
     
@@ -53,6 +58,7 @@
 
     NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
     NSLog(@"DIT IS DE CONTENT: %@", content);
+    [ SFContentBlockerManager reloadContentBlockerWithIdentifier:@"net.noizystudios.Website-Blocker.WebBlcoker" completionHandler:nil];
 
     
 }
@@ -100,7 +106,7 @@
    
     
    AddSiteViewController *urlAddViewController = [[AddSiteViewController alloc] init];
-    urlAddViewController.view.backgroundColor = [UIColor clearColor];
+   // urlAddViewController.view.backgroundColor = [UIColor clearColor];
    urlAddViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     self.navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
 
@@ -242,6 +248,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
 
     }
+    
+    cell.backgroundColor = Rgb2UIColor(59, 210, 255);
     
     BlockedSite *blockURL =  blockedSitesArray[indexPath.row];
     
