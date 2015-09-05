@@ -98,20 +98,21 @@
     [self.tableView reloadData];
     
 }
-- (IBAction)tappedAddSiteButton:(UIButton *)sender
+- (IBAction)tappedAddSiteButton:(UIBarButtonItem *)sender
 {
     NSLog(@"Gedaan!");
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-     //  AddSiteViewController *urlAddViewController = [storyboard instantiateViewControllerWithIdentifier:@"AddSiteViewController"];
-   
+     AddSiteViewController *urlAddViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AddSiteViewController"];
     
-   AddSiteViewController *urlAddViewController = [[AddSiteViewController alloc] init];
-   // urlAddViewController.view.backgroundColor = [UIColor clearColor];
-   urlAddViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    
+  //  AddSiteViewController *urlAddViewController = [[AddSiteViewController alloc] init];
+    // urlAddViewController.view.backgroundColor = [UIColor clearColor];
+    urlAddViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     self.navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-
+   // [self.navigationController addChildViewController:urlAddViewController];
     [self presentViewController:urlAddViewController animated:YES completion:nil];
+    
 }
+
 
 - (void)addURLToJson:(NSString *)newlyAddedSite
 {
