@@ -17,7 +17,6 @@
 @interface ViewController ()
 {
     NSMutableArray *blockedSitesArray;
-    //NSString *newlyAddedSite;
     NSString *filePath;
     NSMutableDictionary *jsonResults;
     IBOutlet UIBarButtonItem *addSiteButton;
@@ -47,7 +46,6 @@
     filePath= [documentsDirectory stringByAppendingPathComponent:@"blockList.json"];
     
     if ([fileManager fileExistsAtPath:filePath] == NO) {
-        // NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"txtFile" ofType:@"txt"];
         NSString *resourcePath =  [[NSBundle mainBundle] pathForResource:@"blockerList" ofType:@"json"];
         
         [fileManager copyItemAtPath:resourcePath toPath:filePath error:&error];
@@ -103,12 +101,9 @@
     NSLog(@"Gedaan!");
      AddSiteViewController *urlAddViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AddSiteViewController"];
     
-    
-  //  AddSiteViewController *urlAddViewController = [[AddSiteViewController alloc] init];
-    // urlAddViewController.view.backgroundColor = [UIColor clearColor];
+
     urlAddViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     self.navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-   // [self.navigationController addChildViewController:urlAddViewController];
     [self presentViewController:urlAddViewController animated:YES completion:nil];
     
 }
@@ -180,22 +175,6 @@
     }
 
     
-
-  //  NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
-   
-//
-//    NSString *newString = [content substringToIndex:[content length]-2];
-//    
-//    NSMutableString *nieuweJSON = [[NSMutableString alloc]initWithString:newString];
-//    [nieuweJSON appendString:@","];
-//    [nieuweJSON appendString:jsonStr];
-//    [nieuweJSON appendString:@"]"];
-//    [nieuweJSON writeToFile:filePath atomically:YES
-//encoding:NSUTF8StringEncoding error:nil];
-//    
-//    
-//    NSLog(@"DIT IS DE NIEUWE CONTENT: %@", nieuweJSON);
-    
     [ SFContentBlockerManager reloadContentBlockerWithIdentifier:@"net.noizystudios.Website-Blocker.WebBlcoker" completionHandler:nil];
 
     
@@ -221,7 +200,6 @@
         NSLog(@"DE WAARDE VAN DE NIEUWE SITE 1 2 %@",  Blockurl.url);
         [self addURLToJson:Blockurl.url];
         [self readJSONandRefreshTableviewArray];
-        //[blockedSitesArray addObject:Blockurl];
     }
     else
     {
@@ -237,8 +215,6 @@
 }
 
 
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

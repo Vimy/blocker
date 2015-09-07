@@ -62,26 +62,7 @@
         }
     }
     
-//    UIAlertController * alert=   [UIAlertController
-//                                  alertControllerWithTitle:@"Succes!"
-//                                  message:@"Website geblokkeerd"
-//                                  preferredStyle:UIAlertControllerStyleAlert];
-//    
-//    UIAlertAction* ok = [UIAlertAction
-//                         actionWithTitle:@"OK"
-//                         style:UIAlertActionStyleDefault
-//                         handler:^(UIAlertAction * action)
-//                         {
-//                             [alert dismissViewControllerAnimated:YES completion:nil];
-//                             
-//      
-//  
-//    
-//    
-//                         }];
-//    
-//      [alert addAction:ok];
-//    [self presentViewController:alert animated:YES completion:nil];
+
 }
                          
                          
@@ -105,7 +86,6 @@
     resultsItem.attachments = @[resultsProvider];
     
     [self.extensionContext completeRequestReturningItems:nil completionHandler:nil];
-     // [self.extensionContext completeRequestReturningItems:@[resultsItem] completionHandler:nil];
 }
 
 @end

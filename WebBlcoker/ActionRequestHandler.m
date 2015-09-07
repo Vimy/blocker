@@ -36,7 +36,6 @@
     
     if ([fileManager fileExistsAtPath:jsonPath] == NO)
     {
-        // NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"txtFile" ofType:@"txt"];
         NSString *resourcePath =  [[NSBundle mainBundle] pathForResource:@"blockerList" ofType:@"json"];
         
         [fileManager copyItemAtPath:resourcePath toPath:jsonPath error:&error];
@@ -45,7 +44,6 @@
     NSURL *jsonURL = [NSURL fileURLWithPath: jsonPath];
     
     
-    //NSItemProvider *attachment = [[NSItemProvider alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"blockerList" withExtension:@"json"]];
 
     NSItemProvider *attachment = [[NSItemProvider alloc] initWithContentsOfURL:jsonURL];
     
