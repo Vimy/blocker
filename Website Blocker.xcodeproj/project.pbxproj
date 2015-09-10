@@ -13,7 +13,7 @@
 		390862411B8BE484001865BA /* getUrl.js in Resources */ = {isa = PBXBuildFile; fileRef = 390862401B8BE484001865BA /* getUrl.js */; };
 		390862431B8BED0F001865BA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 390862421B8BED0F001865BA /* Info.plist */; };
 		3917DF401B6EE0F500542B67 /* BlockedSite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3917DF3F1B6EE0F500542B67 /* BlockedSite.m */; };
-		391B35071B85087D001C33A5 /* blockerList.json in Resources */ = {isa = PBXBuildFile; fileRef = 39572A121B3EF9AC00EF4DFC /* blockerList.json */; };
+		391B35071B85087D001C33A5 /* blockerListsdq.json in Resources */ = {isa = PBXBuildFile; fileRef = 39572A121B3EF9AC00EF4DFC /* blockerListsdq.json */; };
 		3945E3D91B8E4D6C005B3563 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945E3D81B8E4D6C005B3563 /* OrderedDictionary.m */; };
 		3945E3DA1B8E4D6C005B3563 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945E3D81B8E4D6C005B3563 /* OrderedDictionary.m */; };
 		3945E3DB1B8E4D6C005B3563 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945E3D81B8E4D6C005B3563 /* OrderedDictionary.m */; };
@@ -23,7 +23,7 @@
 		39572A001B3EF96A00EF4DFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395729FE1B3EF96A00EF4DFC /* Main.storyboard */; };
 		39572A021B3EF96A00EF4DFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39572A011B3EF96A00EF4DFC /* Assets.xcassets */; };
 		39572A051B3EF96A00EF4DFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39572A031B3EF96A00EF4DFC /* LaunchScreen.storyboard */; };
-		39572A131B3EF9AC00EF4DFC /* blockerList.json in Resources */ = {isa = PBXBuildFile; fileRef = 39572A121B3EF9AC00EF4DFC /* blockerList.json */; };
+		39572A131B3EF9AC00EF4DFC /* blockerListsdq.json in Resources */ = {isa = PBXBuildFile; fileRef = 39572A121B3EF9AC00EF4DFC /* blockerListsdq.json */; };
 		39572A161B3EF9AC00EF4DFC /* ActionRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 39572A151B3EF9AC00EF4DFC /* ActionRequestHandler.m */; };
 		39572A1A1B3EF9AC00EF4DFC /* WebBlcoker.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 39572A101B3EF9AC00EF4DFC /* WebBlcoker.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		39E20FDF1B98E8270054C8CB /* AddSiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E20FDE1B98E8270054C8CB /* AddSiteViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -86,7 +86,7 @@
 		39572A041B3EF96A00EF4DFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39572A061B3EF96A00EF4DFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39572A101B3EF9AC00EF4DFC /* WebBlcoker.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WebBlcoker.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		39572A121B3EF9AC00EF4DFC /* blockerList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = blockerList.json; sourceTree = "<group>"; };
+		39572A121B3EF9AC00EF4DFC /* blockerListsdq.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = blockerListsdq.json; sourceTree = "<group>"; };
 		39572A141B3EF9AC00EF4DFC /* ActionRequestHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionRequestHandler.h; sourceTree = "<group>"; };
 		39572A151B3EF9AC00EF4DFC /* ActionRequestHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionRequestHandler.m; sourceTree = "<group>"; };
 		39572A171B3EF9AC00EF4DFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -187,7 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				3945E3D51B8CFB7B005B3563 /* WebBlcoker.entitlements */,
-				39572A121B3EF9AC00EF4DFC /* blockerList.json */,
+				39572A121B3EF9AC00EF4DFC /* blockerListsdq.json */,
 				39572A141B3EF9AC00EF4DFC /* ActionRequestHandler.h */,
 				39572A151B3EF9AC00EF4DFC /* ActionRequestHandler.m */,
 				39572A171B3EF9AC00EF4DFC /* Info.plist */,
@@ -325,7 +325,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				391B35071B85087D001C33A5 /* blockerList.json in Resources */,
+				391B35071B85087D001C33A5 /* blockerListsdq.json in Resources */,
 				39572A051B3EF96A00EF4DFC /* LaunchScreen.storyboard in Resources */,
 				39572A021B3EF96A00EF4DFC /* Assets.xcassets in Resources */,
 				39572A001B3EF96A00EF4DFC /* Main.storyboard in Resources */,
@@ -336,7 +336,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39572A131B3EF9AC00EF4DFC /* blockerList.json in Resources */,
+				39572A131B3EF9AC00EF4DFC /* blockerListsdq.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

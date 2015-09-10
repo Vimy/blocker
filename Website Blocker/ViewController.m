@@ -45,10 +45,13 @@
     
     filePath= [documentsDirectory stringByAppendingPathComponent:@"blockList.json"];
     
-    if ([fileManager fileExistsAtPath:filePath] == NO) {
-        NSString *resourcePath =  [[NSBundle mainBundle] pathForResource:@"blockerList" ofType:@"json"];
+    if ([fileManager fileExistsAtPath:filePath] == NO)
+    {
         
-        [fileManager copyItemAtPath:resourcePath toPath:filePath error:&error];
+        [self addURLToJson:@"www.site.be"];
+//        NSString *resourcePath =  [[NSBundle mainBundle] pathForResource:@"blockerList" ofType:@"json"];
+//        
+//        [fileManager copyItemAtPath:resourcePath toPath:filePath error:&error];
     }
     
    [self readJSONandRefreshTableviewArray];
@@ -168,10 +171,12 @@
     }
     else
     {
+        [jsonStr writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+
         // NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"txtFile" ofType:@"txt"];
-        NSString *resourcePath =  [[NSBundle mainBundle] pathForResource:@"blockerList" ofType:@"json"];
-        
-        [fileManager copyItemAtPath:resourcePath toPath:filePath error:&error];
+//        NSString *resourcePath =  [[NSBundle mainBundle] pathForResource:@"blockerList" ofType:@"json"];
+//        
+//        [fileManager copyItemAtPath:resourcePath toPath:filePath error:&error];
     }
 
     
