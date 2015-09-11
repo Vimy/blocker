@@ -61,6 +61,7 @@
     NSLog(@"DIT IS DE CONTENT: %@", content);
     [ SFContentBlockerManager reloadContentBlockerWithIdentifier:@"net.noizystudios.Website-Blocker.WebBlcoker" completionHandler:nil];
 
+    //comment
     
 }
 
